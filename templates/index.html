@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title>Tuberculosis Detection</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: rgb(248, 243, 197);
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 11%;
+        }
+
+        #form-div {
+            margin-left: 30rem;
+            margin-right: 30rem;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+    <h1 align="center" font-weight="bold">Tuberculosis Detection</h1>
+    <h3 align="center">Upload your Chest X-Ray Image</h2>
+        </p>
+        <img src="../static/lungs.png" class="center" width="110" height="140">
+        <div class="container">
+            <div class="row">
+                <h2 align='center'>Select a file to upload</h2>
+                <h5 align='center'>Allowed image types: jpg, jpeg, png</h5>
+                <p>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+                </p>
+                {% if filename %}
+                <div>
+                    <img src="{{ url_for('display_image', filename=filename) }}">
+                </div>
+                {% endif %}
+                <div id='form-div'>
+
+
+                    <form method="post" action="/tb" enctype="multipart/form-data">
+                        <dl>
+                            <p>
+                                <input type="file" name="file" class="form-control" autocomplete="off" required>
+                            </p>
+                        </dl>
+                        <p>
+                            <input type="submit" value="Submit" class="btn btn-success btn-lg btn-block">
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
