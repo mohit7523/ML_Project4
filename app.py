@@ -41,11 +41,11 @@ app.secret_key = "secret key"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+#ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+#def allowed_file(filename):
+    #return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route('/')
@@ -68,9 +68,9 @@ def upload_image():
         #print('upload_image filename: ' + filename)
         flash('Image successfully uploaded')
         return render_template('index.html', filename=filename)
-    else:
-        flash('Allowed image types are - png, jpg, jpeg')
-        return redirect(request.url)
+    #else:
+        #flash('Allowed image types are - png, jpg, jpeg')
+        #return redirect(request.url)
 
 
 @app.route('/tb', methods=['POST'])
